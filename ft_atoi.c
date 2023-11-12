@@ -21,7 +21,7 @@ int	ft_atoi(const char *nbr)
 	result = 0;
 	while (*nbr && (*nbr == ' ' || (*nbr >= 9 && *nbr <= 13)))
 		++nbr;
-	if(*nbr && (*nbr == '-' || *nbr == '+'))
+	if (*nbr && (*nbr == '-' || *nbr == '+'))
 	{
 		if (*nbr++ == '-')
 			sign *= -1;

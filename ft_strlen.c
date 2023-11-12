@@ -14,9 +14,9 @@
 
 size_t	ft_strlen(const char *s)
 {
-	register const unsigned int	*ptr_s;
+	register const char	*ptr_s;
 
-	ptr_s = (unsigned int *)s;
+	ptr_s = s;
 	while (*ptr_s)
 		++ptr_s;
 	return (ptr_s - s);

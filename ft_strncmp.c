@@ -19,6 +19,8 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 
 	ptr_s1 = s1;
 	ptr_s2 = s2;
+	if (n == 0)
+		return (0);
 	while (--n && *ptr_s1 && *ptr_s1 == *ptr_s2)
 	{
 		++ptr_s1;

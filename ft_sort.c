@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "libft.h"
 
 void	ft_sort(void *data, size_t nel, size_t width,
 		int (*compare)(const void *, const void *))

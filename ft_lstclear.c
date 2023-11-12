@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pollivie <pollivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/03 15:39:39 by pollivie          #+#    #+#             */
-/*   Updated: 2023/10/03 15:39:42 by pollivie         ###   ########.fr       */
+/*   Created: 2023/10/03 15:41:12 by pollivie          #+#    #+#             */
+/*   Updated: 2023/10/03 15:41:14 by pollivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "libft.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *node)
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	register t_list	*itter;
+	t_list	*temp_node;
 
-	if (*lst)
+	if (!del || !lst || !*lst)
+		return ;
+	while (*lst)
 	{
-		itter = *lst;
-		while (itter->next)
-			itter = itter->next;
-		itter->next = node;
+		temp_node = (*lst)->next;
+		ft_lstdelone(*lst, del);
+		*lst = temp_node;
 	}
-	else
-		*lst = node;
 }

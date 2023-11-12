@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: plgol.perso <pollivie@student.42.fr>       +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/11/12 16:10:27 by plgol.perso       #+#    #+#              #
+#    Updated: 2023/11/12 16:10:28 by plgol.perso      ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 CC         = cc
 RM         = rm -f
 CFLAGS     = -Wall -Wextra -Werror
@@ -37,19 +49,19 @@ SRCS       =  ft_isalpha.c 	  \
 			  ft_putchar_fd.c \
 			  ft_putstr_fd.c  \
 			  ft_putendl_fd.c \
-			  ft_putnbr_fd.c			
+			  ft_putnbr_fd.c  \
 
-BONUS      = ./bonus/ft_lstadd_back.c  \
-			 ./bonus/ft_lstadd_front.c \
-			 ./bonus/ft_lstclear.c 	   \
-	         ./bonus/ft_lstdelone.c    \
-			 ./bonus/ft_lstiter.c      \
-			 ./bonus/ft_lstlast.c  	   \
-	         ./bonus/ft_lstmap.c       \
-			 ./bonus/ft_lstnew.c       \
-			 ./bonus/ft_lstsize.c
+BONUS      = ft_lstadd_back.c  \
+			 ft_lstadd_front.c \
+			 ft_lstclear.c 	   \
+	         ft_lstdelone.c    \
+			 ft_lstiter.c      \
+			 ft_lstlast.c  	   \
+	         ft_lstmap.c       \
+			 ft_lstnew.c       \
+			 ft_lstsize.c
 
-SORT       = ./sort/ft_sort.c
+SORT       = ft_sort.c
 
 OBJS       = $(SRCS:.c=.o)
 BONUS_OBJS = $(BONUS:.c=.o)

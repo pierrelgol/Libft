@@ -14,5 +14,5 @@
 
 int	ft_isalnum(int n)
 {
-	return (((n | 32) >= 'a' && (n | 32) <= 'z') && (n >= '0' && n <= '9'));
+	return (ft_isalpha(n) || (n >= '0' && n <= '9'));
 }

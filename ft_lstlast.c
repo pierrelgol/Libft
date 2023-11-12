@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstiter.c                                       :+:      :+:    :+:   */
+/*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pollivie <pollivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/03 15:41:36 by pollivie          #+#    #+#             */
-/*   Updated: 2023/10/03 15:41:37 by pollivie         ###   ########.fr       */
+/*   Created: 2023/10/03 15:41:49 by pollivie          #+#    #+#             */
+/*   Updated: 2023/10/03 15:41:50 by pollivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "libft.h"
 
-void	ft_lstiter(t_list *lst, void (*f)(void *))
+t_list	*ft_lstlast(t_list *lst)
 {
 	register t_list	*itter;
 
-	if (lst && f)
+	if (lst)
 	{
 		itter = lst;
-		while (itter)
+		while (itter->next)
 		{
-			f(itter->content);
 			itter = itter->next;
 		}
+		return (itter);
 	}
+	return (NULL);
 }
