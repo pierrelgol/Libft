@@ -11,18 +11,19 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <limits.h>
 #include <stdlib.h>
 
 void	*ft_calloc(size_t count, size_t size)
 {
-	void	*ptr;
+	void		*ptr;
 
-	if (count >= INT_MAX || size >= INT_MAX)
+	if (!count || !size)
+		return (malloc(0));
+	if (count > INT_MAX / size)
 		return (NULL);
-	ptr = malloc(count * size);
+	ptr = malloc(size * count);
 	if (!ptr)
-		return (0);
-	ft_bzero(ptr, count * size);
+		return (NULL);
+	ft_bzero(ptr, (count * size));
 	return (ptr);
 }

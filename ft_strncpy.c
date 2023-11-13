@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear.c                                      :+:      :+:    :+:   */
+/*   ft_strncpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pollivie <pollivie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pollivie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/03 15:41:12 by pollivie          #+#    #+#             */
-/*   Updated: 2023/10/03 15:41:14 by pollivie         ###   ########.fr       */
+/*   Created: 2023/11/13 14:00:02 by pollivie          #+#    #+#             */
+/*   Updated: 2023/11/13 14:00:03 by pollivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstclear(t_list **lst, void (*del)(void *))
+char	*ft_strncpy(char *dest, const char *src, unsigned int n)
 {
-	t_list	*temp_node;
+	unsigned int	idx;
 
-	if (!lst || !del)
-		return ;
-	while (*lst)
+	idx = 0;
+	while (src[idx] && idx < n)
 	{
-		temp_node = (*lst)->next;
-		ft_lstdelone(*lst, del);
-		*(lst) = temp_node;
+		dest[idx] = src[idx];
+		idx++;
 	}
-	temp_node = NULL;
+	while (idx < n)
+		dest[idx++] = '\0';
+	return (dest);
 }

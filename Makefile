@@ -12,7 +12,7 @@
 
 CC         = cc
 RM         = rm -f
-CFLAGS     = -Wall -Wextra -Werror
+CFLAGS     = -Wall -Wextra -Werror -fPIC
 NAME       = libft.a
 SHARED_NAME= libft.so
 
@@ -82,8 +82,8 @@ sort: $(OBJS) $(SORT_OBJS)
 bonus: $(OBJS) $(BONUS_OBJS)
 	ar rcs $(NAME) $(OBJS) $(BONUS_OBJS)
 
-.so: $(OBJS)
-	$(CC) $(CFLAGS) -shared -o $(SHARED_NAME) $(OBJS)
+so: $(OBJS)
+	$(CC) $(CLFAGS) -shared -o $(SHARED_NAME) $(OBJS) $(BONUS_OBJS)
 
 
 clean:

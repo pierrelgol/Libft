@@ -12,7 +12,7 @@
 #ifndef LIBFT_H
 # define LIBFT_H
 
-# include <stddef.h>
+# include <limits.h>
 # include <stdint.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -69,6 +69,9 @@ void							ft_striteri(char *s, void (*f)(unsigned int,
 										char *));
 size_t							ft_strlcpy(char *dst, const char *src,
 									size_t dstsize);
+char							*ft_strncpy(char *dest, const char *src,
+									unsigned int n);
+
 size_t							ft_strlcat(char *dst, const char *src,
 									size_t dstsize);
 size_t							ft_strlen(const char *s);
