@@ -13,78 +13,74 @@
 #include "libft.h"
 #include <stddef.h>
 
-static int	ft_token_count(const char *s, char tok)
+static int	split_is_charset(char source, char ch)
 {
-	int	tcount;
+	return (source == ch);
+}
 
-	tcount = 0;
+static int	split_get_word_count(char const *s, char c)
+{
+	int	count;
+
+	count = 0;
 	while (*s)
 	{
-		while (*s && *s == tok)
-			++s;
-		if (*s != '\0')
-			++tcount;
-		while (*s && *s != tok)
-			++s;
+		while (*s && split_is_charset(*s, c))
+			s++;
+		if (*s && !split_is_charset(*s, c))
+		{
+			count++;
+			while (*s && !split_is_charset(*s, c))
+				s++;
+		}
 	}
-	return (tcount);
+	return (count);
 }
 
-static int	ft_token_len(const char *s, char tok)
+static char	*split_make_word(char const *s, char c)
 {
-	int	tlen;
+	char	*word;
+	int		wlen;
 
-	tlen = 0;
-	while (*s && *s != tok)
+	wlen = 0;
+	while (s[wlen] && !split_is_charset(s[wlen], c))
+		++wlen;
+	word = malloc(sizeof(char) * (wlen + 1));
+	if (!word)
+		return (NULL);
+	wlen = 0;
+	while (s[wlen] && !split_is_charset(s[wlen], c))
 	{
-		++s;
-		++tlen;
+		word[wlen] = s[wlen];
+		++wlen;
 	}
-	return (tlen);
+	word[wlen] = '\0';
+	return (word);
 }
 
-static char	*ft_token_split(const char *s, char tok)
-{
-	char	*result;
-	size_t	rlen;
-	size_t	i;
-
-	rlen = ft_token_len(s, tok);
-	if (rlen == 0)
-		return (NULL);
-	result = (char *)malloc(sizeof(char) * rlen + 1);
-	if (!result)
-		return (NULL);
-	i = 0;
-	while (i < rlen)
-		result[i++] = *s++;
-	result[rlen] = '\0';
-	return (result);
-}
-
-char	**ft_split(char const *s, char c)
+char	**ft_split(char const *src, char ch)
 {
 	char	**result;
-	size_t	size;
-	size_t	index;
+	int		word_count;
+	int		index;
 
-	if (!s)
-		return (NULL);
-	size = ft_token_count(s, c);
-	result = (char **)malloc(sizeof(char *) * size + 1);
+	word_count = split_get_word_count(src, ch);
+	result = malloc(sizeof(char *) * (word_count + 1));
 	if (!result)
 		return (NULL);
 	index = 0;
-	while (index < size)
+	while (*src)
 	{
-		while (*s && *s == c)
-			++s;
-		if (*s != '\0')
-			result[index] = ft_token_split(s, c);
-		while (*s && *s != c)
-			++s;
-		++index;
+		while (*src && split_is_charset(*src, ch))
+			src++;
+		if (*src && !split_is_charset(*src, ch))
+		{
+			result[index] = split_make_word(src, ch);
+			index++;
+			while (*src && !split_is_charset(*src, ch))
+				src++;
+		}
 	}
-	result[size] = NULL;
+	result[index] = NULL;
 	return (result);
 }

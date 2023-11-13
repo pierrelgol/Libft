@@ -14,16 +14,11 @@
 
 t_list	*ft_lstlast(t_list *lst)
 {
-	register t_list	*itter;
-
-	if (lst)
+	while (lst)
 	{
-		itter = lst;
-		while (itter->next)
-		{
-			itter = itter->next;
-		}
-		return (itter);
+		if (lst->next == NULL)
+			return (lst);
+		lst = lst->next;
 	}
-	return (NULL);
+	return (lst);
 }
